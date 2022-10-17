@@ -1,6 +1,5 @@
 package Objcet;
 
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -78,6 +78,47 @@ class StudentTest {
         //query ok,then update age
         updateAge(arr,sid);
         showInfo(arr);
+    }
+
+    @Test
+    void GIVEN_collection_WHEN_create_student_THEN_create_success(){
+        //定义集合 泛型为Student对象
+        ArrayList<Student> list = new ArrayList<>();
+
+        Student stu1 = new Student(1,"lucy",15);
+        Student stu2 = new Student(2,"xxxx",18);
+
+        list.add(stu1);
+        list.add(stu2);
+
+//        for (int i = 0; i < list.size(); i++) {
+//            Student stu = list.get(i);
+//            System.out.println(list.get(i));
+//            System.out.println("Id: " + stu.getId() + " Name " + stu.getName() + " Age " + stu.getAge());
+//        }
+        boolean flag = searchUser(3,list);
+        if (flag) {
+            System.out.println("id 在list中");
+        }else {
+            System.out.println("id 不在list中");
+        }
+
+    }
+
+
+    public static boolean searchUser(int id, ArrayList<Student> arr) {
+        //查找id是否在集合stu中
+        for (int i = 0; i < arr.size(); i++) {
+            Student stu = arr.get(i);
+            if (id == stu.getId()) {
+                //可以返回索引
+//                return i;
+                return true;
+            }
+        }
+        //返回索引 -1表示不存在
+//        return -1;
+        return false;
     }
 
 
