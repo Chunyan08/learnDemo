@@ -31,14 +31,16 @@ public class StudentSys {
                     System.exit(0);
                 }
                 case "6" : {login();break;}
-                case "7" : {register();break;}
-                case "8" : {forgetPasswd();break;}
+                case "7" : {register(list);break;}
+//                case "8" : {forgetPasswd();break;}
                 default : System.out.println("没有这个选项");
             }
 
         }
 
     }
+
+
     //添加
     public static void addStudent(ArrayList<Student> list) {
         Student stu = new Student();
@@ -134,9 +136,51 @@ public class StudentSys {
     /**
      * register
      */
-    public static void register(){
+    public static boolean register(ArrayList<Student> list) {
+        Scanner sc = new Scanner(System.in);
 
+        //先验证格式是否正确
+        //所有的数据以后都是存在于数据库中 需要校验则需要需用网络资源 --性能问题
+        while (true) {
+            System.out.println("请输入用户id：");
+            String id = sc.next();
+            boolean flag = checkUsername(id);
+            if (!flag) {
+                System.out.println("用户名格式不满足条件,重新输入！");
+                continue;
+            }
+
+            //验证唯一性
+//        boolean flag1 = isExist(list,id);
+        }
     }
+
+    private static boolean checkUsername(String username) {
+        //require: 用户名唯一  3-15
+        int len = username.length();
+        //username.length() < 3 || username.length() > 15) -->需要调用2次计算 效率低下
+        if (len <3 || len > 15) {
+            return false;
+        }
+        //字母+数字
+        for (int i = 0; i < username.length(); i++) {
+            char ch = username.charAt(i);
+            if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= '0' && ch <= '9')) {
+                return false;
+            }
+        }
+        int count = 0;
+        //且不能是纯数字  统计usrname中字母的个数 >=1即可
+        for (int i = 0; i < username.length(); i++) {
+            char ch = username.charAt(i);
+            if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) {
+                count ++;
+                break;//当统计到有1个字母 确认不是纯数字 则可break 提高效率
+            }
+        }
+        return count > 0;
+    }
+
     /**
      * 忘记密码
      */
@@ -168,4 +212,7 @@ public class StudentSys {
         }
         return -1;
     }
+
+
+
 }
