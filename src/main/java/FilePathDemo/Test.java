@@ -18,5 +18,16 @@ public class Test {
         System.out.println("absolute: " + absolute);
         System.out.println("relative: " + relative);
 
+
+
+        /*
+        String baseDir = props.getProperty("base.dir");
+        //May be a string such as /opt/myprog or c:\Program Files\myprog
+        Path basePath = Paths.get(baseDir);
+        */
+
+
+
+
     }
 }
