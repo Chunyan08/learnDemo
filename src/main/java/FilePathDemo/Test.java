@@ -17,8 +17,17 @@ public class Test {
         Path relative = Paths.get("pers", "zhang", "ThreadDemo.java");
         System.out.println("absolute: " + absolute);
         System.out.println("relative: " + relative);
+        System.out.println("-----------------------");
+        /*
+        * 如果q是绝对路径，则结果就是q
+        * 否则，根据文件系统的规则，将『p后面跟着q』作为结果
+        * resolve方法有一种快捷方式，它接受一个字符串而不是路径：
+        * */
+        System.out.println(absolute.resolve("/bin"));
+        System.out.println(absolute.resolve("bin"));
 
-
+        Path workRelative = Paths.get("work");
+        Path workPath = basePath.resolve(workRelative);
 
         /*
         String baseDir = props.getProperty("base.dir");
