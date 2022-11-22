@@ -184,14 +184,13 @@ public class Test {
         delete(path04);
         delete(path4);
 
-
-
-
-
-
-
-
-
+        File directory = new File("tt.txt");
+        //D:\test11\learnDemo\tt.txt
+        System.out.println("getCanonicalPath " + directory.getCanonicalPath());
+        //D:\test11\learnDemo\tt.txt
+        System.out.println("getAbsolutePath " + directory.getAbsolutePath());
+        //D:\test11\learnDemo
+        System.out.println("System.getProperty(\"user.dir\"):" + System.getProperty("user.dir"));
     }
 
 
