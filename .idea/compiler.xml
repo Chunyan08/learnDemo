@@ -12,6 +12,8 @@
         <module name="learnDemo" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="11" />
+    <bytecodeTargetLevel target="11">
+      <module name="learnDemo" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
